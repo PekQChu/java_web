@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="labFactory">
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="c3p0.min_size">2</property>
+		<property name="c3p0.max_size">30</property>
+		<property name="c3p0.time_out">1800</property> <!-- seconds --><!-- default: 0 -->
+		<property name="c3p0.max_statement">50</property> <!-- default: 0 -->
+		<property name="c3p0.acquire_increment">1</property> <!-- default: 1 -->
+		<property name="c3p0.idle_test_period">120</property>  <!-- seconds --><!-- default: 0 -->
+		<property name="c3p0.validate">true</property>
+		<property name="connection.autoReconnect">true</property>
+		<property name="connection.autoReconnectForPools">true</property>
+		<property name="connection.is-connection-validation-required">true</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.is-connection-validation-required">true</property>
+		<!-- 修改以下配置信息以修改数据库链接设置 -->
+		<property name="hibernate.connection.url">jdbc:mysql://115.159.114.220/iot?useUnicode=true&amp;characterEncoding=UTF-8</property>
+		<!-- 修改以下配置信息以修改数据库登录账号设置 -->
+		<property name="hibernate.connection.username">root</property>
+		<!-- 修改以下配置信息以修改数据库登录密码设置 -->
+		<property name="hibernate.connection.password">ccy0208</property>
+		<!-- 修改以下配置信息以修改数据库默认数据库名设置 -->
+		<!-- CREATE DATABASE cpa2 default charset utf8 COLLATE utf8_general_ci -->
+		<property name="hibernate.default_schema">iot</property>
+		<property name="show_sql">true</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- 自动建表 -->
+		<property name="hbm2ddl.auto">update</property>
+		<property name="validationQuery">SELECT 1</property>
+		<property name="testOnBorrow">true</property>
+		<mapping class="com.shu.model.User" />
+		
+		
+		
+		<!-- 下面是假实体类 -->
+		<!-- <mapping class="com.shu.utill.model.PositionCompany" /> -->
+	</session-factory>
+</hibernate-configuration>

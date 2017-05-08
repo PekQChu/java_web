@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <title>物联网云平台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../css/indexnav.css">
+    <link rel="stylesheet" type="text/css" href="../css/layui.css">
+    <script src="../js/layui.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?140edb42613735c6ab1ca3a40c6342f7";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</head>
+
+<body>
+    <div class="layui-main"><style type="text/css">
+    html,
+    body {
+        height: 100%;
+    }
+
+    body>.layui-main {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+<div class="x-top x-bg">
+    <div class="layui-main"><a href="#"><strong class="x-text-white">物联网云平台</strong></a></div>
+</div>
+<form method="post" url="#" class="layui-form" style="width:500px;height:300px;position:absolute;top:50%;left:50%;margin-left:-250px;margin-top:-150px;">
+    <h1 class="x-h1">用户登录</h1>
+    <div class="layui-form-item layui-form-pane">
+        <label class="layui-form-label">手机：</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" id="username" name="username" placeholder="请输入你的手机号码" lay-verify="email" autocomplete="on" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-pane">
+        <label class="layui-form-label">密码：</label>
+        <div class="layui-input-block">
+            <input type="password" class="layui-input" id="password" name="password" placeholder="请输入你的密码" lay-verify="password" autocomplete="on" />
+        </div>
+    </div>
+    <input type="hidden" name="__token__" value="qUBqO4" />    <div class="layui-form-item x-center">
+        <button class="layui-btn x-layout" lay-submit lay-filter="login">登录</button>
+    </div>
+    <div class="layui-form-item">
+        <div class="x-left">
+            没有账号？ <a id="reg" url="#">点击注册</a>
+        </div>
+        <div class="x-right">
+            忘记密码？ <a id="get" url="#">点击找回</a>
+        </div>
+    </div>
+</form>
+<script>
+//自己重写
+    layui.config({
+        base: "App/member/Statics/Js/" //你的模块目录
+    }).use("member"); //加载入口
+    layui.config({
+        base: "Statics/Js/" //你的模块目录
+    }).use("xphp");
+    layui.use(["jquery", "layer", "xphp"], function() {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            xphp = layui.xphp;
+        $(document).on("click", "#reg", function() {
+            var url = $(this).attr("url");
+            xphp.go(url, function(data) {
+                $.get(url, function(data) {
+                    i = layer.open({
+                        type: 1,
+                        title: "注册用户",
+                        shadeClose: false,
+                        area: "500px",
+                        content: data,
+                    });
+                });
+            });
+            return false;
+        });
+$(document).on("click", "#get", function() {
+            var url = $(this).attr("url");
+            xphp.go(url, function(data) {
+                $.get(url, function(data) {
+                    i = layer.open({
+                        type: 1,
+                        title: "找回密码",
+                        shadeClose: false,
+                        area: "500px",
+                        content: data,
+                    });
+                });
+            });
+            return false;
+        });
+    });
+</script>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>导航栏</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/indexnav.css">
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <script src="../layui/layui.js"></script>
+</head>
+<body>
+<!-- 首页的导航栏 -->
+<div class="x-top x-bg" style="height:100%;">
+    <div class="layui-main">
+        <a href="http://task.dagongshe.cn/"><strong class="x-text-white">物联网云平台</strong></a>
+        <div class="x-right">
+            <a class="layui-btn layui-btn-primary" href="signin.html">登录</a>
+            <button class="layui-btn" id="reg" url="">注册</button>        </div>
+    </div>
+</div>
+</body>
+<!-- 重写 js  -->
+<script type="text/javascript">
+	 layui.config({
+        base: "../js/" //你的模块目录
+    }).use("xphp");
+    layui.use(["jquery", "code", "layer", "xphp", "util"], function() {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            util = layui.util,
+            xphp = layui.xphp;
+        layui.code();
+        util.fixbar();
+        $(document).on("click", "#reg,#register", function() {
+            var url = $(this).attr("url");
+            xphp.go(url, function(data) {
+                $.get(url, function(data) {
+                    i = layer.open({
+                        type: 1,
+                        title: "注册用户",
+                        shadeClose: false,
+                        area: "500px",
+                        content: data,
+                    });
+                });
+            });
+            return false;
+        });
+    });
+</script>
+</html>
